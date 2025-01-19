@@ -1,13 +1,16 @@
-[JAVA_BADGE]: https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white
-[SPRING_BADGE]: https://img.shields.io/badge/SpringBoot-6DB33F?style=for-the-badge&logo=Spring&logoColor=white
-[DOCKER]: https://img.shields.io/badge/docker.svg?style=for-the-badge&logo=docker&logoColor=white
-[POSTGRES]: https://img.shields.io/badge/postgresql-4169e1?style=for-the-badge&logo=postgresql&logoColor=white
 
-<h1 align="center" style="font-weight: bold;">Security App Spring Boot 💻</h1>
+[NESTJS]: https://img.shields.io/badge/nestjs-%23E0234E.svg?style=for-the-badge&logo=nestjs&logoColor=white
+[KUBERNETES]: https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=for-the-badge&logo=kubernetes&logoColor=white
+[DOCKER]: https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white
+[POSTGRES]: https://img.shields.io/badge/postgresql-4169e1?style=for-the-badge&logo=postgresql&logoColor=white
+[TYPESCRIPT]: https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white
+
+<h1 align="center" style="font-weight: bold;">Kubernetes container orchestration💻</h1>
 
 ![DOCKER][DOCKER]
-![spring][SPRING_BADGE]
-![java][JAVA_BADGE]
+![KUBERNETES][KUBERNETES]
+![NESTJS][NESTJS]
+![TYPESCRIPT][TYPESCRIPT]
 ![Postgresql][POSTGRES]
 
 <p align="center">
@@ -20,71 +23,83 @@
 </p>
 
 <p align="center">
-  <b>Authentication API built with spring boot, where the user can authenticate with email/password or Oauth2 google which returns a jwt access token for authorization on private routes.</b>
+  <b>A simple container orchestration project using Kubernetes, managing an API for creating and listing tasks and a Postgresql database for data persistence.</b>
   <br />
-  <b><a href="https://github.com/ThiagoBarbosa05/security-ui">click here to access the application front-end code.</a></b>
 </p>
 
 <h2 id="features">⚙️ Features</h2>
 
-- password confirmation
-- upload profile image
-- openid google authentication
-- sending email to recover password
-- password recovery
+- Kubernetes Cluster configuration
+- Creation of deployments
+- Services configuration to connect the api to the database
+- Creation of Storage Class, Persistent Volume (PV) and a Persistent Volume Claim (PVC) to persist database data
+- configuration of environment variables using Config Map and secrets for the api and database.
+- Configuring Autoscaling with Horizontal Pod Autoscaler (HPA).
+- Configuring metrics server to collect metrics from cluster pods.
 
 <h2 id="started">🚀 Getting started</h2>
 
+<h3>Prerequisites</h3>
+
+To run this application on your local machine, you will need to meet the following requirements
+
+- have docker [Docker](https://docs.docker.com/engine/install) installed on your machine
+- have [Kubernetes](https://kubernetes.io/pt-br/docs/setup/) and [kind](https://kind.sigs.k8s.io/docs/user/quick-start/#installation) installed on your machine to manage containers
+
+After fulfilling all the requirements, follow the steps below to run the application.
+
 Clone the project
 
 ```bash
-  git clone https://github.com/ThiagoBarbosa05/security-app-spring-boot.git
-```
-
-Clone the project
-
-```bash
-  git clone https://github.com/ThiagoBarbosa05/security-app-spring-boot.git
+  git clone https://github.com/ThiagoBarbosa05/kubernetes-challenge-rocketseat.git
 ```
 
 Enter the project directory
 
 ```bash
-  cd security-app-spring-boot
+  cd kubernetes-challenge-rocketseat
 ```
 
-You will need to fill in the environment variables to run the application, see an example of `application.properties` below
-
-```yaml
-spring.datasource.url=${DATABASE_URL}
-spring.security.oauth2.client.registration.google.client-id=${GOOGLE_CLIENT_ID}
-spring.security.oauth2.client.registration.google.client-secret=${GOOGLE_CLIENT_SECRET}
-aws.access.key.id=${AWS_ACCESS_KEY}
-aws.access.secret.key=${AWS_ACCESS_SECRET_KEY}
-aws.s3.bucket.name=${AWS_S3_BUCKET_NAME}
-aws.region=${AWS_REGION}
-spring.mail.username=${SMTP_MAIL_USERNAME}
-spring.mail.password=${SMTP_MAIL_PASSWORD}
-spring.mail.properties.mail.smtp.from=${SMTP_MAIL_USERNAME}
-base.url=${BASE_URL}
-security.token.secret=${TOKEN_SECRET}
-```
-
-Start the server
-
-For this step you will need to have [Maven](https://maven.apache.org/download.cgi) and [Java (version 17)](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html) installed on your machine, or you can open it in your preferred IDE.
+Create the cluster in Kubernetes
 
 ```bash
-  mvn spring-boot:run
+  kind create cluster --config k8s/kind.yaml --name=desafio-cluster
 ```
 
-<h3>Prerequisites</h3>
+Create the namespaces
 
-Here you list all prerequisites necessary for running your project. For example:
+```bash
+  kubectl apply -f k8s/namespaces.yaml
+```
 
-- [Java](https://maven.apache.org/download.cgi)
-- [Maven](https://maven.apache.org/download.cgi)
-- [PostgreSQL](https://www.postgresql.org/download/)
+Create data persistence
+
+```bash
+  kubectl apply -f k8s/storageclass.yaml
+  kubectl apply -f k8s/pv.yaml
+  kubectl apply -f k8s/pvc-db.yaml
+```
+
+Create services
+
+```bash
+  kubectl apply -f k8s/service-api.yaml
+  kubectl apply -f k8s/service-db.yaml
+```
+
+Configure environment variables and secrets
+
+```bash
+  kubectl apply -f k8s/db-credentials.yaml
+  kubectl apply -f k8s/configmap-api.yaml
+```
+
+Create the api and database deployment
+
+```bash
+  kubectl apply -f k8s/deployment-api.yaml
+  kubectl apply -f k8s/deployment-db.yaml
+```
 
 <h2 id="docs"> 📖 Documentation </h2>
 
@@ -127,3 +142,4 @@ This project is under <a href="https://github.com/ThiagoBarbosa05/security-app-s
 [📝 How to create a Pull Request](https://www.atlassian.com/br/git/tutorials/making-a-pull-request)
 
 [💾 Commit pattern](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716)
+
