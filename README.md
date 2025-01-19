@@ -5,7 +5,7 @@
 
 <h1 align="center" style="font-weight: bold;">Security App Spring Boot 💻</h1>
 
-![AWS][AWS_BADGE]
+![DOCKER][DOCKER]
 ![spring][SPRING_BADGE]
 ![java][JAVA_BADGE]
 ![Postgresql][POSTGRES]
