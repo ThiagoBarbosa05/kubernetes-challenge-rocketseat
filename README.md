@@ -1,99 +1,129 @@
+[JAVA_BADGE]: https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white
+[SPRING_BADGE]: https://img.shields.io/badge/SpringBoot-6DB33F?style=for-the-badge&logo=Spring&logoColor=white
+[AWS_BADGE]: https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white
+[POSTGRES]: https://img.shields.io/badge/postgresql-4169e1?style=for-the-badge&logo=postgresql&logoColor=white
+
+<h1 align="center" style="font-weight: bold;">Security App Spring Boot 💻</h1>
+
+![AWS][AWS_BADGE]
+![spring][SPRING_BADGE]
+![java][JAVA_BADGE]
+![Postgresql][POSTGRES]
+
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
+<a href="#features">Features</a> •
+ <a href="#started">Getting Started</a> • 
+ <a href="#docs">Documentation</a> •
+ <a href="#license">License</a> •
+ <a href="#collaborators">Collaborators</a> •
+ <a href="#contribute">Contribute</a>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
+<p align="center">
+  <b>Authentication API built with spring boot, where the user can authenticate with email/password or Oauth2 google which returns a jwt access token for authorization on private routes.</b>
+  <br />
+  <b><a href="https://github.com/ThiagoBarbosa05/security-ui">click here to access the application front-end code.</a></b>
 </p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+<h2 id="features">⚙️ Features</h2>
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- password confirmation
+- upload profile image
+- openid google authentication
+- sending email to recover password
+- password recovery
 
-## Project setup
+<h2 id="started">🚀 Getting started</h2>
 
-```bash
-$ pnpm install
-```
-
-## Compile and run the project
+Clone the project
 
 ```bash
-# development
-$ pnpm run start
-
-# watch mode
-$ pnpm run start:dev
-
-# production mode
-$ pnpm run start:prod
+  git clone https://github.com/ThiagoBarbosa05/security-app-spring-boot.git
 ```
 
-## Run tests
+Clone the project
 
 ```bash
-# unit tests
-$ pnpm run test
-
-# e2e tests
-$ pnpm run test:e2e
-
-# test coverage
-$ pnpm run test:cov
+  git clone https://github.com/ThiagoBarbosa05/security-app-spring-boot.git
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+Enter the project directory
 
 ```bash
-$ pnpm install -g mau
-$ mau deploy
+  cd security-app-spring-boot
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+You will need to fill in the environment variables to run the application, see an example of `application.properties` below
 
-## Resources
+```yaml
+spring.datasource.url=${DATABASE_URL}
+spring.security.oauth2.client.registration.google.client-id=${GOOGLE_CLIENT_ID}
+spring.security.oauth2.client.registration.google.client-secret=${GOOGLE_CLIENT_SECRET}
+aws.access.key.id=${AWS_ACCESS_KEY}
+aws.access.secret.key=${AWS_ACCESS_SECRET_KEY}
+aws.s3.bucket.name=${AWS_S3_BUCKET_NAME}
+aws.region=${AWS_REGION}
+spring.mail.username=${SMTP_MAIL_USERNAME}
+spring.mail.password=${SMTP_MAIL_PASSWORD}
+spring.mail.properties.mail.smtp.from=${SMTP_MAIL_USERNAME}
+base.url=${BASE_URL}
+security.token.secret=${TOKEN_SECRET}
+```
 
-Check out a few resources that may come in handy when working with NestJS:
+Start the server
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+For this step you will need to have [Maven](https://maven.apache.org/download.cgi) and [Java (version 17)](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html) installed on your machine, or you can open it in your preferred IDE.
 
-## Support
+```bash
+  mvn spring-boot:run
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+<h3>Prerequisites</h3>
 
-## Stay in touch
+Here you list all prerequisites necessary for running your project. For example:
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- [Java](https://maven.apache.org/download.cgi)
+- [Maven](https://maven.apache.org/download.cgi)
+- [PostgreSQL](https://www.postgresql.org/download/)
 
-## License
+<h2 id="docs"> 📖 Documentation </h2>
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+After running the api locally, access this url to see the documentation
+
+```bash
+http://localhost:8080/swagger-ui/index.html#/
+```
+
+[Documentation](http://localhost:8080/swagger-ui/index.html#/)
+
+<h2 id="license">📃 License </h2>
+
+This project is under <a href="https://github.com/ThiagoBarbosa05/security-app-spring-boot/blob/main/LICENSE">MIT</a> license
+
+<h2 id="collaborators"> 🤝 Collaborators</h2>
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="#">
+        <img src="https://avatars.githubusercontent.com/u/61393836?v=4" width="100px;" alt="Foto doe Thiago Barbosa"/><br>
+        <sub>
+          <b>Thiago Barbosa</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
+
+<h2 id="contribute">📫 Contribute</h2>
+
+1. `git clone https://github.com/ThiagoBarbosa05/security-app-spring-boot.git`
+2. `git checkout -b feature/NAME`
+3. Follow commit patterns
+4. Open a Pull Request explaining the problem solved or feature made, if exists, append screenshot of visual modifications and wait for the review!
+
+<h3>Documentations that might help</h3>
+
+[📝 How to create a Pull Request](https://www.atlassian.com/br/git/tutorials/making-a-pull-request)
+
+[💾 Commit pattern](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716)
