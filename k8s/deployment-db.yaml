@@ -2,17 +2,17 @@ apiVersion: apps/v1
 kind: Deployment
 
 metadata:
-  name: challenge-db
-
+  name: desafio-db
+  namespace: desafio-db
 spec:
   replicas: 1
   selector:
     matchLabels:
-      api: challenge-db
+      api: desafio-db
   template:
     metadata:
       labels:
-        api: challenge-db
+        api: desafio-db
     spec:
       containers:
         - name: challenge-db
@@ -20,13 +20,20 @@ spec:
           imagePullPolicy: IfNotPresent
           envFrom:
             - secretRef:
-                name: challenge-db-secrets
+                name: db-credentials
           ports:
             - containerPort: 5432
           resources:
             requests:
-              cpu: 400m
+              cpu: 300m
               memory: 256Mi
             limits:
               cpu: 700m
               memory: 512Mi
+          volumeMounts:
+            - name: postgres-persistent-data
+              mountPath: /app/lib/postgresql/data
+      volumes:
+        - name: postgres-persistent-data
+          persistentVolumeClaim:
+            claimName: postgres-pvc

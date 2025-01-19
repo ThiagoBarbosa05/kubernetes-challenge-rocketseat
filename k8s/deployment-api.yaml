@@ -2,22 +2,26 @@ apiVersion: apps/v1
 kind: Deployment
 
 metadata:
-  name: challenge-app
+  name: desafio-api
+  namespace: desafio-api
 
 spec:
   replicas: 1
   selector:
     matchLabels:
-      api: challenge-app
+      api: desafio-api
   template:
     metadata:
       labels:
-        api: challenge-app
+        api: desafio-api
     spec:
       containers:
-        - name: challenge-app
-          image: thiago0503/challenge-api:v2
+        - name: desafio-api
+          image: thiago0503/challenge-api:v4
           imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: desafio-api-config
           ports:
             - containerPort: 3000
           readinessProbe:
@@ -41,7 +45,7 @@ spec:
           resources:
             requests:
               cpu: 400m
-              memory: 128Mi
+              memory: 256Mi
             limits:
               cpu: 700m
-              memory: 256Mi
+              memory: 512Mi

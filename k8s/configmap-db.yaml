@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-
-metadata:
-  name: challenge-db-config
-
-data:
-  ALLOW_EMPTY_PASSWORD: 'yes'
-  POSTGRES_DB: challengedb

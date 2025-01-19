@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+
+metadata:
+  name: desafio-api-config
+  namespace: desafio-api
+
+data:
+  DATABASE_URL: 'postgresql://postgres:postgres@desafio-db-svc.desafio-db.svc.cluster.local:5432/desafio_db'

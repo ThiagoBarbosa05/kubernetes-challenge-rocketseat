@@ -1,0 +1,24 @@
+services:
+  db:
+    container_name: sampledb
+    image: bitnami/postgresql
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: challengedb
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U docker']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  api:
+    image: thiago0503/challenge-api:v4
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - '3000:3000'
+    env_file:
+      - .env

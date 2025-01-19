@@ -2,12 +2,14 @@ apiVersion: v1
 kind: Service
 
 metadata:
-  name: challenge-db-svc
+  name: desafio-db-svc
+  namespace: desafio-db
 
 spec:
   type: ClusterIP
   selector:
-    api: challenge-db
+    api: desafio-db
   ports:
     - port: 5432
       targetPort: 5432
+      protocol: TCP
