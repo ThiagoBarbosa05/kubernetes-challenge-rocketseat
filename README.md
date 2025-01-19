@@ -1,6 +1,6 @@
 [JAVA_BADGE]: https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white
 [SPRING_BADGE]: https://img.shields.io/badge/SpringBoot-6DB33F?style=for-the-badge&logo=Spring&logoColor=white
-[AWS_BADGE]: https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white
+[DOCKER]: https://img.shields.io/badge/docker.svg?style=for-the-badge&logo=docker&logoColor=white
 [POSTGRES]: https://img.shields.io/badge/postgresql-4169e1?style=for-the-badge&logo=postgresql&logoColor=white
 
 <h1 align="center" style="font-weight: bold;">Security App Spring Boot 💻</h1>
