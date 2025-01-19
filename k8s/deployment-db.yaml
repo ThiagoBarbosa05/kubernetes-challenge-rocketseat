@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: challenge-db
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      api: challenge-db
+  template:
+    metadata:
+      labels:
+        api: challenge-db
+    spec:
+      containers:
+        - name: challenge-db
+          image: bitnami/postgresql
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - secretRef:
+                name: challenge-db-secrets
+          ports:
+            - containerPort: 5432
+          resources:
+            requests:
+              cpu: 400m
+              memory: 256Mi
+            limits:
+              cpu: 700m
+              memory: 512Mi

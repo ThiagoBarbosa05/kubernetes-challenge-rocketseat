@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: challenge-app
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      api: challenge-app
+  template:
+    metadata:
+      labels:
+        api: challenge-app
+    spec:
+      containers:
+        - name: challenge-app
+          image: thiago0503/challenge-api:v2
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 3000
+            failureThreshold: 3
+            successThreshold: 1
+            timeoutSeconds: 1
+            periodSeconds: 10
+            initialDelaySeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 3000
+            failureThreshold: 2
+            successThreshold: 1
+            timeoutSeconds: 1
+            periodSeconds: 10
+            initialDelaySeconds: 5
+          resources:
+            requests:
+              cpu: 400m
+              memory: 128Mi
+            limits:
+              cpu: 700m
+              memory: 256Mi
