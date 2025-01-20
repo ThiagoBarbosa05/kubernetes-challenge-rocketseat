@@ -6,7 +6,12 @@ metadata:
   namespace: desafio-api
 
 spec:
-  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 20%
+      maxSurge: 20%
+  replicas: 5
   selector:
     matchLabels:
       api: desafio-api
