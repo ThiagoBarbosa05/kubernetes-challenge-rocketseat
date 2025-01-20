@@ -151,14 +151,12 @@ Here you can list the main routes of your API, and what are their expected reque
 
 ```json
 {
-  {
     "id": "358784d5-ff2e-4f65-bede-addb436af5c4",
     "title": "task title",
     "description": "Task description",
     "isCompleted": false,
     "createdAt": "2025-01-20T21:45:17.952Z",
     "updatedAt": "2025-01-20T21:45:17.952Z"
-  }
 }
 ```
 
