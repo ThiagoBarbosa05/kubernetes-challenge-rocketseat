@@ -164,7 +164,7 @@ Here you can list the main routes of your API, and what are their expected reque
 
 <h2 id="license">📃 License </h2>
 
-This project is under <a href="https://github.com/ThiagoBarbosa05/security-app-spring-boot/blob/main/LICENSE">MIT</a> license
+This project is under <a href="https://github.com/ThiagoBarbosa05/kubernetes-challenge-rocketseat.git/main/LICENSE">MIT</a> license
 
 <h2 id="collaborators"> 🤝 Collaborators</h2>
 
@@ -183,7 +183,7 @@ This project is under <a href="https://github.com/ThiagoBarbosa05/security-app-s
 
 <h2 id="contribute">📫 Contribute</h2>
 
-1. `git clone https://github.com/ThiagoBarbosa05/security-app-spring-boot.git`
+1. `git clone hhttps://github.com/ThiagoBarbosa05/kubernetes-challenge-rocketseat.git`
 2. `git checkout -b feature/NAME`
 3. Follow commit patterns
 4. Open a Pull Request explaining the problem solved or feature made, if exists, append screenshot of visual modifications and wait for the review!
