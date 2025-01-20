@@ -1,4 +1,3 @@
-
 [NESTJS]: https://img.shields.io/badge/nestjs-%23E0234E.svg?style=for-the-badge&logo=nestjs&logoColor=white
 [KUBERNETES]: https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=for-the-badge&logo=kubernetes&logoColor=white
 [DOCKER]: https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white
@@ -84,8 +83,11 @@ Create services
 
 ```bash
   kubectl apply -f k8s/service-api.yaml
+  kubectl apply -f k8s/node-port-svc.yaml
   kubectl apply -f k8s/service-db.yaml
 ```
+
+After creating the services, the api will be running at the following address `http://localhost:30007`, if it doesn't work you can try `http://<IP-DO-NODE>:30007`
 
 Configure environment variables and secrets
 
@@ -101,15 +103,64 @@ Create the api and database deployment
   kubectl apply -f k8s/deployment-db.yaml
 ```
 
-<h2 id="docs"> 📖 Documentation </h2>
-
-After running the api locally, access this url to see the documentation
+Enable the Horizontal Pod Autoscaler (HPA) and metrics server
 
 ```bash
-http://localhost:8080/swagger-ui/index.html#/
+  kubectl apply -f k8s/hpa.yaml
+  kubectl apply -f metrics/metrics-server.yaml
 ```
 
-[Documentation](http://localhost:8080/swagger-ui/index.html#/)
+<h2 id="docs"> 📖 Documentation </h2>
+
+Here you can list the main routes of your API, and what are their expected request bodies.
+​
+| route | description  
+|----------------------|-----------------------------------------------------
+| <kbd>GET /</kbd> | retrieves all tasks [response details](#get-tasks-detail)
+| <kbd>POST /create/task</kbd> | create a new task [request details](#post-task-detail)
+
+<h3 id="get-tasks-detail">GET /</h3>
+
+**RESPONSE**
+
+```json
+[
+  {
+    "id": "358784d5-ff2e-4f65-bede-addb436af5c4",
+    "title": "task example",
+    "description": "Task description example",
+    "isCompleted": false,
+    "createdAt": "2025-01-20T21:45:17.952Z",
+    "updatedAt": "2025-01-20T21:45:17.952Z"
+  }
+]
+```
+
+<h3 id="post-task-detail">POST /create/task</h3>
+
+**REQUEST**
+
+```json
+{
+  "title": "task title",
+  "description": "task description"
+}
+```
+
+**RESPONSE**
+
+```json
+{
+  {
+    "id": "358784d5-ff2e-4f65-bede-addb436af5c4",
+    "title": "task title",
+    "description": "Task description",
+    "isCompleted": false,
+    "createdAt": "2025-01-20T21:45:17.952Z",
+    "updatedAt": "2025-01-20T21:45:17.952Z"
+  }
+}
+```
 
 <h2 id="license">📃 License </h2>
 
@@ -142,4 +193,3 @@ This project is under <a href="https://github.com/ThiagoBarbosa05/security-app-s
 [📝 How to create a Pull Request](https://www.atlassian.com/br/git/tutorials/making-a-pull-request)
 
 [💾 Commit pattern](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716)
-
