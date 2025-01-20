@@ -1,99 +1,145 @@
+
+[NESTJS]: https://img.shields.io/badge/nestjs-%23E0234E.svg?style=for-the-badge&logo=nestjs&logoColor=white
+[KUBERNETES]: https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=for-the-badge&logo=kubernetes&logoColor=white
+[DOCKER]: https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white
+[POSTGRES]: https://img.shields.io/badge/postgresql-4169e1?style=for-the-badge&logo=postgresql&logoColor=white
+[TYPESCRIPT]: https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white
+
+<h1 align="center" style="font-weight: bold;">Kubernetes container orchestration💻</h1>
+
+![DOCKER][DOCKER]
+![KUBERNETES][KUBERNETES]
+![NESTJS][NESTJS]
+![TYPESCRIPT][TYPESCRIPT]
+![Postgresql][POSTGRES]
+
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
+<a href="#features">Features</a> •
+ <a href="#started">Getting Started</a> • 
+ <a href="#docs">Documentation</a> •
+ <a href="#license">License</a> •
+ <a href="#collaborators">Collaborators</a> •
+ <a href="#contribute">Contribute</a>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
+<p align="center">
+  <b>A simple container orchestration project using Kubernetes, managing an API for creating and listing tasks and a Postgresql database for data persistence.</b>
+  <br />
 </p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+<h2 id="features">⚙️ Features</h2>
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- Kubernetes Cluster configuration
+- Creation of deployments
+- Services configuration to connect the api to the database
+- Creation of Storage Class, Persistent Volume (PV) and a Persistent Volume Claim (PVC) to persist database data
+- configuration of environment variables using Config Map and secrets for the api and database.
+- Configuring Autoscaling with Horizontal Pod Autoscaler (HPA).
+- Configuring metrics server to collect metrics from cluster pods.
 
-## Project setup
+<h2 id="started">🚀 Getting started</h2>
 
-```bash
-$ pnpm install
-```
+<h3>Prerequisites</h3>
 
-## Compile and run the project
+To run this application on your local machine, you will need to meet the following requirements
 
-```bash
-# development
-$ pnpm run start
+- have docker [Docker](https://docs.docker.com/engine/install) installed on your machine
+- have [Kubernetes](https://kubernetes.io/pt-br/docs/setup/) and [kind](https://kind.sigs.k8s.io/docs/user/quick-start/#installation) installed on your machine to manage containers
 
-# watch mode
-$ pnpm run start:dev
+After fulfilling all the requirements, follow the steps below to run the application.
 
-# production mode
-$ pnpm run start:prod
-```
-
-## Run tests
+Clone the project
 
 ```bash
-# unit tests
-$ pnpm run test
-
-# e2e tests
-$ pnpm run test:e2e
-
-# test coverage
-$ pnpm run test:cov
+  git clone https://github.com/ThiagoBarbosa05/kubernetes-challenge-rocketseat.git
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+Enter the project directory
 
 ```bash
-$ pnpm install -g mau
-$ mau deploy
+  cd kubernetes-challenge-rocketseat
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+Create the cluster in Kubernetes
 
-## Resources
+```bash
+  kind create cluster --config k8s/kind.yaml --name=desafio-cluster
+```
 
-Check out a few resources that may come in handy when working with NestJS:
+Create the namespaces
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+```bash
+  kubectl apply -f k8s/namespaces.yaml
+```
 
-## Support
+Create data persistence
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```bash
+  kubectl apply -f k8s/storageclass.yaml
+  kubectl apply -f k8s/pv.yaml
+  kubectl apply -f k8s/pvc-db.yaml
+```
 
-## Stay in touch
+Create services
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```bash
+  kubectl apply -f k8s/service-api.yaml
+  kubectl apply -f k8s/service-db.yaml
+```
 
-## License
+Configure environment variables and secrets
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+```bash
+  kubectl apply -f k8s/db-credentials.yaml
+  kubectl apply -f k8s/configmap-api.yaml
+```
+
+Create the api and database deployment
+
+```bash
+  kubectl apply -f k8s/deployment-api.yaml
+  kubectl apply -f k8s/deployment-db.yaml
+```
+
+<h2 id="docs"> 📖 Documentation </h2>
+
+After running the api locally, access this url to see the documentation
+
+```bash
+http://localhost:8080/swagger-ui/index.html#/
+```
+
+[Documentation](http://localhost:8080/swagger-ui/index.html#/)
+
+<h2 id="license">📃 License </h2>
+
+This project is under <a href="https://github.com/ThiagoBarbosa05/security-app-spring-boot/blob/main/LICENSE">MIT</a> license
+
+<h2 id="collaborators"> 🤝 Collaborators</h2>
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="#">
+        <img src="https://avatars.githubusercontent.com/u/61393836?v=4" width="100px;" alt="Foto doe Thiago Barbosa"/><br>
+        <sub>
+          <b>Thiago Barbosa</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
+
+<h2 id="contribute">📫 Contribute</h2>
+
+1. `git clone https://github.com/ThiagoBarbosa05/security-app-spring-boot.git`
+2. `git checkout -b feature/NAME`
+3. Follow commit patterns
+4. Open a Pull Request explaining the problem solved or feature made, if exists, append screenshot of visual modifications and wait for the review!
+
+<h3>Documentations that might help</h3>
+
+[📝 How to create a Pull Request](https://www.atlassian.com/br/git/tutorials/making-a-pull-request)
+
+[💾 Commit pattern](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716)
+
